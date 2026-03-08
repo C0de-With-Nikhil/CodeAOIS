@@ -1,22 +1,28 @@
-def create_plan(instruction: str):
+def create_plan(instruction):
 
     instruction = instruction.lower()
 
     tasks = []
 
     if "api" in instruction:
+
         tasks.append({
             "agent": "coder",
             "task": "create_api"
         })
 
-    elif "function" in instruction:
         tasks.append({
-            "agent": "coder",
-            "task": "create_function"
+            "agent": "tester",
+            "task": "test_api"
+        })
+
+        tasks.append({
+            "agent": "git",
+            "task": "auto commit api feature"
         })
 
     else:
+
         tasks.append({
             "agent": "coder",
             "task": instruction
