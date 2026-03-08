@@ -1,13 +1,33 @@
 {
-    "version": "0.2.0",
-    "configurations": [
+  "name": "codeaois",
+  "publisher": "nikhil",
+  "version": "0.1.0",
+  "engines": {"vscode": "^1.70.0"},
+  "activationEvents": [
+    "onView:codeaois.chatView"
+  ],
+  "main": "extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/C0de-With-Nikhil/CodeAOIS.git"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
         {
-            "name": "CodeAOIS: Run Task",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/cli/main.py",
-            "console": "integratedTerminal",
-            "args": ["task", "create", "flask", "api"]
+          "id": "codeaois-sidebar",
+          "title": "CodeAOIS"
         }
-    ]
+      ]
+    },
+    "views": {
+      "codeaois-sidebar": [
+        {
+          "type": "webview",
+          "id": "codeaois.chatView",
+          "name": "AI Developer"
+        }
+      ]
+    }
+  }
 }

@@ -17,4 +17,4 @@ def task(instruction: str):
         print(f"- {r}")
 
 if __name__ == "__main__":
-    app()
+    app() 
