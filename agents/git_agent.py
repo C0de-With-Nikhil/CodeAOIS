@@ -5,46 +5,40 @@ class GitAgent:
         branch = task.get("branch", "ai-feature")
         message = task.get("message", "AI update")
 
-        # run git commands and capture output so they don't print to stdout
-        outputs = []
+        # run git commands while capturing their output to prevent
+        # interleaving with the CLI's `Results:` section.  we don't
+        # expose the raw git output in the return value because the
+        # orchestrator only needs a simple summary.
 
         branches = subprocess.run(
             ["git", "branch", "--list", branch],
             capture_output=True,
             text=True,
         )
-        outputs.append(branches.stdout.strip())
         if branch in branches.stdout:
-            proc = subprocess.run(
+            subprocess.run(
                 ["git", "checkout", branch],
                 capture_output=True,
                 text=True,
             )
         else:
-            proc = subprocess.run(
+            subprocess.run(
                 ["git", "checkout", "-b", branch],
                 capture_output=True,
                 text=True,
             )
-        outputs.append(proc.stdout.strip())
 
-        proc = subprocess.run(
+        subprocess.run(
             ["git", "add", "."],
             capture_output=True,
             text=True,
         )
-        outputs.append(proc.stdout.strip())
 
-        proc = subprocess.run(
+        subprocess.run(
             ["git", "commit", "-m", message],
             capture_output=True,
             text=True,
         )
-        outputs.append(proc.stdout.strip())
 
-        summary = f"Changes committed to {branch}"
-        extra = "\n".join(filter(None, outputs))
-        if extra:
-            summary += f"\n{extra}"
-        return summary
+        return f"Changes committed to {branch}"
 
