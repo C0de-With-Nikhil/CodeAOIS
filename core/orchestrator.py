@@ -1,15 +1,26 @@
+from agents.coder_agent import CoderAgent
+
 class AgentOrchestrator:
 
     def __init__(self):
-        self.agents = []
 
-    def register(self, agent):
-        self.agents.append(agent)
+        self.agents = {
+            "coder": CoderAgent()
+        }
 
-    def run(self, task):
+    def run(self, tasks):
+
         results = []
 
-        for agent in self.agents:
-            results.append(agent.execute(task))
+        for task in tasks:
+
+            agent_name = task["agent"]
+            action = task["task"]
+
+            agent = self.agents.get(agent_name)
+
+            if agent:
+                result = agent.execute(action)
+                results.append(result)
 
         return results
