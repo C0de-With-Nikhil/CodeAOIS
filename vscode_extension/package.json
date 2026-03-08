@@ -3,14 +3,27 @@
   "publisher": "nikhil",
   "version": "0.1.0",
   "engines": {"vscode": "^1.70.0"},
-  "activationEvents": ["onCommand:codeaois.startChat"],
+  "activationEvents": [
+    "onView:codeaois.chatView"
+  ],
   "main": "extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "codeaois.startChat",
-        "title": "CodeAOIS: Open Chat"
-      }
-    ]
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeaois-sidebar",
+          "title": "CodeAOIS"
+        }
+      ]
+    },
+    "views": {
+      "codeaois-sidebar": [
+        {
+          "type": "webview",
+          "id": "codeaois.chatView",
+          "name": "AI Developer"
+        }
+      ]
+    }
   }
 }
