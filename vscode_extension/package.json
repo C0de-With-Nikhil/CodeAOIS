@@ -1,15 +1,13 @@
 {
-  "name": "codeaois",
-  "publisher": "nikhil",
-  "engines": {"vscode": "^1.70.0"},
-  "activationEvents": ["onCommand:codeaois.runTask"],
-  "main": "extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "codeaois.runTask",
-        "title": "Run CodeAOIS Task"
-      }
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CodeAOIS: Run Task",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/cli/main.py",
+            "console": "integratedTerminal",
+            "args": ["task", "create", "flask", "api"]
+        }
     ]
-  }
 }

@@ -4,6 +4,7 @@ from agents.git_agent import GitAgent
 
 class AgentOrchestrator:
     def __init__(self):
+        # Registering the full AI team
         self.agents = {
             "coder": CoderAgent(),
             "tester": TesterAgent(),
@@ -15,6 +16,8 @@ class AgentOrchestrator:
         for task in tasks:
             agent_name = task.get("agent")
             agent = self.agents.get(agent_name)
+            
+            # If the agent exists, execute its task
             if agent:
                 results.append(agent.execute(task.get("task")))
         return results
