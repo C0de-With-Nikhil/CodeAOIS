@@ -6,8 +6,10 @@ app = typer.Typer()
 
 @app.command()
 def task(instruction: str):
-    print(f"Instruction received: {instruction}")
-    plan = create_plan(instruction)
+    """Execute an AI task.  Wrap multi-word instructions in quotes."""
+    instruction_text = instruction
+    print(f"Instruction received: {instruction_text}")
+    plan = create_plan(instruction_text)
     orchestrator = AgentOrchestrator()
     results = orchestrator.run(plan)
     print("Results:")
