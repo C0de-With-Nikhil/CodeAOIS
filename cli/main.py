@@ -19,16 +19,13 @@ def init():
 @app.command()
 def task(instruction: str):
     """Execute an AI task"""
-
     print(f"Instruction received: {instruction}")
-
     plan = create_plan(instruction)
-
     orchestrator = AgentOrchestrator()
-
-    result = orchestrator.run(plan)
-
-    print(result)
+    results = orchestrator.run(plan)
+    print("Results:")
+    for r in results:
+        print(f"- {r}")
 
 if __name__ == "__main__":
     app()
