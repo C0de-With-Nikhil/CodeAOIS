@@ -1,7 +1,12 @@
-def ask_llm(prompt: str):
+# Example local LLM integration placeholder
+from pathlib import Path
 
-    # placeholder for now
-
-    response = f"AI generated code for: {prompt}"
-
-    return response
+def ask_llm(prompt: str) -> str:
+    """
+    Replace with actual local model call.
+    """
+    # For now, simulate response
+    response_file = Path("llm_responses.txt")
+    response_file.touch(exist_ok=True)
+    response_file.write_text(f"AI Response for prompt:\n{prompt}\n\n")
+    return f"AI-generated code for: {prompt}"
