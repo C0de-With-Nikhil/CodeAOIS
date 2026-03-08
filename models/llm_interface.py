@@ -14,7 +14,7 @@ def ask_llm(prompt: str) -> str:
     try:
         response = client.chat.completions.create(
             # Switched to Qwen 2.5 Coder Free - much more stable for coding tasks
-            model="qwen/qwen-2.5-coder-32b-instruct:free", 
+            model="openrouter/free",
             messages=[
                 {
                     "role": "system", 
