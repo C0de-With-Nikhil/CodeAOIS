@@ -12,12 +12,9 @@ class AgentOrchestrator:
 
     def run(self, tasks):
         results = []
-
         for task in tasks:
             agent_name = task.get("agent")
             agent = self.agents.get(agent_name)
             if agent:
-                result = agent.execute(task.get("task"))
-                results.append(result)
-
+                results.append(agent.execute(task.get("task")))
         return results
